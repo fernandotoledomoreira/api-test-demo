@@ -9,4 +9,6 @@ O Tamplete utilizando Java, Cucumber, TestNG, RestAssured, Allure e Faker para r
 
 ## Execução
 
-- Executando a classe Runner.
+Executando a classe Runner.
+
+![descrição da imagem](execution.png)
