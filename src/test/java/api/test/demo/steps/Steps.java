@@ -16,11 +16,13 @@ public class Steps {
 
     @Dado("que tenho um payload")
     public void queTenhoUmpPayload() {
+        // Step carrega o payload da classe clients
         clients.setPayload();
     }
 
     @Quando("realizar uma request {} na path {word}")
     public void realiarRequestNaPath(Method typeRequest, String path) {
+        // Step realiza um switch de acordo com o typeRequest e consome requisição da clients
         switch (typeRequest) {
             case POST:
                 clients.postRequest(String.valueOf(typeRequest), path);
@@ -36,11 +38,13 @@ public class Steps {
 
     @Entao("deve retornar o status code {int}")
     public void deveRetornarStatusCode(int statusCode) {
+        // Step carrega o método para validar status code da classe clients
         clients.validateStatusCode(statusCode);
     }
 
     @E("deve retornar o contrato {string}")
     public void deveRetornarOContratoEsperado(String schema) {
+        // Step carrega o método para validar json schema da classe clients
         clients.validateSchemaApi(schema);
     }
 }

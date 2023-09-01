@@ -15,15 +15,19 @@ import static io.restassured.RestAssured.given;
 
 public class Clients {
 
+    // Declaração de variáveis, estancia de classes e libs
+
     Response response;
     RequestSpecification requestSpecification = new RequestSpecBuilder().build();
     BodyUser payload = new BodyUser();
     Faker faker = new Faker();
 
+    // Método para carrega o payload default
     public void setPayload() {
         requestSpecification.body(payload);
     }
 
+    // Método para realizar uma requisição POST
     public void postRequest(String typeRequest, String path) {
         requestSpecification.baseUri("https://reqres.in/api/");
         response = given()
@@ -39,6 +43,7 @@ public class Clients {
                 .response();
     }
 
+    // Método para realizar uma requisição PATCH
     public void patchRequest(String typeRequest, String path) {
         requestSpecification.baseUri("https://reqres.in/api/");
         payload.setName(faker.name().fullName() + " edited");
@@ -58,6 +63,7 @@ public class Clients {
                 .response();
     }
 
+    // Método para realizar uma requisição GET
     public void getRequest(String typeRequest, String path) {
         requestSpecification.baseUri("https://reqres.in/api/");
         requestSpecification.pathParam("id", "1");
@@ -74,10 +80,12 @@ public class Clients {
                 .response();
     }
 
+    // Método para realizar a comparação dos status codes
     public void validateStatusCode(Integer code) {
         Assert.assertEquals(response.getStatusCode(), code);
     }
 
+    // Método para realizar a validação de json schema
     public void validateSchemaApi(String schema) {
         response.then().body(JsonSchemaValidator.matchesJsonSchemaInClasspath("schemas/" + schema));
     }
